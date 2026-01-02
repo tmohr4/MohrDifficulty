@@ -1,5 +1,4 @@
-﻿extern alias Legacy;
-global using HarmonyLib;
+﻿global using HarmonyLib;
 global using RoR2;
 global using System;
 using BepInEx;
@@ -10,7 +9,6 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Permissions;
 using UnityEngine.Networking;
-using static Legacy::R2API.DirectorAPI;
 
 [assembly: AssemblyVersion(CreditModifier.version)]
 #pragma warning disable CS0618
