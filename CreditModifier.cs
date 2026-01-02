@@ -20,7 +20,7 @@ using UnityEngine.Networking;
 public class CreditModifier : BaseUnityPlugin
 {
 	public const string identifier = "MohrCredits";
-	public const string version = "1.0.1";
+	public const string version = "1.0.2";
     private static Harmony instance = null;
 
     static double scalar = 1;

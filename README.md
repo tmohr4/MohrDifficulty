@@ -22,6 +22,9 @@ Mostly stolen from [*MultitudesDifficulty*](https://thunderstore.io/package/6thm
 
 ## Version History
 
+#### `1.0.2`
+- Actually fixed readme
+
 #### `1.0.1`
 - Fixed readme
 
