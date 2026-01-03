@@ -20,7 +20,7 @@ using UnityEngine.Networking;
 public class CreditModifier : BaseUnityPlugin
 {
 	public const string identifier = "MohrCredits";
-	public const string version = "1.0.2";
+	public const string version = "1.0.3";
     private static Harmony instance = null;
 
     static double scalar = 1;
@@ -81,16 +81,21 @@ public class CreditModifier : BaseUnityPlugin
             return;
         }
 
-        double playerCount = Run.instance.participatingPlayerCount;
+        double playerCount = Run.instance.participatingPlayerCount; // 2
         double vaultCreditsToRemove = scaleVault ? 0 : ClassicStageInfo.instance?.bonusInteractibleCreditObjects?.Where(
                 obj => obj.objectThatGrantsPointsIfEnabled?.activeSelf is true
-            ).Sum(obj => obj.points) ?? 0;
-        double initialCredits = __instance.interactableCredit - vaultCreditsToRemove;
-        double baseCredits = initialCredits / (0.5 * playerCount + 0.5);
-        double extraCreditsToAdd = baseCredits * (scalar * playerCount + flat) - initialCredits;
-        extraCreditsToAdd = Math.Round(extraCreditsToAdd, MidpointRounding.AwayFromZero);
+            ).Sum(obj => obj.points) ?? 0; // 0
+        if (vaultCreditsToRemove != 0)
+        {
+            System.Console.WriteLine($"{vaultCreditsToRemove} vault credits found");
+        }
+        double stageCredits = __instance.interactableCredit; // 450
+        double initialCredits = stageCredits - vaultCreditsToRemove; // 450
+        double baseCredits = initialCredits / (0.5 * playerCount + 0.5); // 300
+        double extraCreditsToAdd = baseCredits * (scalar * playerCount + flat) - initialCredits; // 150
+        extraCreditsToAdd = Math.Round(extraCreditsToAdd, MidpointRounding.AwayFromZero); // 150
 
-        __instance.interactableCredit += (int)extraCreditsToAdd;
+        __instance.interactableCredit += (int)extraCreditsToAdd; // 760
 
         System.Console.WriteLine($"adjusted initial {initialCredits} credits by {extraCreditsToAdd} to {__instance.interactableCredit}.");
         Run.instance.RecalculateDifficultyCoefficent();

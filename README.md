@@ -22,6 +22,9 @@ Mostly stolen from [*MultitudesDifficulty*](https://thunderstore.io/package/6thm
 
 ## Version History
 
+#### `1.0.3`
+- Fixed error in bonus credit calculations
+
 #### `1.0.2`
 - Actually fixed readme
 
